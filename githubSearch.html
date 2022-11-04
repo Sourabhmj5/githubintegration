@@ -1,0 +1,61 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 10-28-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card>
+        <div class="slds-var-p-around_small">
+            <div class="slds-var-p-around_medium slds-text-align_center slds-text-heading_large" style="background-color:rgb(140, 165, 42)">
+                <b>GITHUB SEARCH</b>
+             </div>
+        </div>
+      
+       <div class="slds-grid">
+          <div class="slds-col slds-size_1-of-2 slds-var-p-around_small">
+             <lightning-input type="Search" value={searchKey} onchange={handleChange}>    
+             </lightning-input>
+          </div>
+          <div class="slds-col slds-size_1-of-2 slds-var-p-around_x-large">
+             <lightning-button label="Search" value="Search" variant="brand" icon-name="standard:search" onclick={handleSearch}>
+             </lightning-button>
+          </div>
+       </div>
+       <br>
+       <template if:true={usersExist}>
+         <div class="slds-scrollable" style="height:300px;width:100%"> 
+         <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+             <thead>
+                <tr>
+                   <th></th>
+                   <th>Id</th>
+                   <th>Username</th>
+                   <th></th>
+                </tr>
+             </thead>
+             <tbody>
+                <template for:each={users} for:item="user">
+                   <tr key={user.id}>
+                     <td data-label="image">
+                        <span class="slds-avatar slds-avatar_circle">
+                           <span class="slds-icon_container slds-icon-standard-user" title="Profile Image">
+                           <img class="slds-icon" src={user.avatar_url} style="width: 100px" alt="Profile Image">
+                           <span class="slds-assistive-text">Profile Image</span>  
+                           </span>
+                        </span>
+                     </td>
+                      <td>{user.id}</td>
+                      <td>{user.login}</td>
+                      <td>
+                        <lightning-button label="Details" name={user.id} value={user.id} variant="brand" icon-name="action:info" onclick={handleClick}></lightning-button>
+                      </td>
+                   </tr>
+                </template>
+             </tbody>
+          </table>
+         </div>
+       </template>
+    </lightning-card>
+ </template>

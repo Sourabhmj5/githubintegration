@@ -1,0 +1,87 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 11-03-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+<lightning-card>
+<div class="slds-var-p-around_small">
+<div class="slds-var-p-around_medium slds-text-align_center slds-text-heading_large" style="background-color:rgb(138, 165, 42)">
+<b>GITHUB DETAILS</b>
+</div>
+<template if:true={user}>
+  <div class="slds-page-header"></div>
+  <div class="slds-grid slds-wrap">
+    <div class="slds-col slds-size_1-of-3 slds-var-p-around_medium">
+      <span class="slds-avatar slds-avatar_circle slds-avatar_large" style="height:200px; width: 200px;">
+<img alt={user.login} src={user.avatar_url} title={user.login}/>
+      </span>
+    </div>
+  </div>
+  <div class="slds-col slds-size_2-of-3 slds-var-p-top_large slds-var-p-around_medium">
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-size_1-of-2  slds-var-p-around_medium">
+<span class="slds-badge slds-badge_inverse slds-theme_success">PUBLIC REPOS : {user.public_repos}</span>
+      </div>
+      <div class="slds-col slds-size_1-of-2  slds-var-p-around_medium">
+        <span class="slds-badge slds-badge_inverse slds-theme_alert">PUBLIC GISTS : {user.public_gists}</span>
+      </div>
+    </div>
+
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-size_1-of-2  slds-var-p-around_medium">
+<span class="slds-badge slds-theme_warning">FOLLOWERS : {user.followers}</span>
+      </div>
+      <div class="slds-col slds-size_1-of-2  slds-var-p-around_medium">
+        <span class="slds-badge slds-theme_error">FOLLOWING : {user.following}</span>
+      </div>
+    </div>
+  </div>
+    <div class="slds-page-header__row">
+    <div class="slds-page-header__col-title">
+    <div class="slds-media">
+    <div class="slds-media__figure">
+    </div>
+    <div class="slds-media__body">
+    <div class="slds-page-header__name">
+    <div class="slds-page-header__name-title">
+    <h1>
+    <span class="slds-page-header__title slds-truncate" title={user.login}>
+    <a target="_blank" href={user.html_url}>{user.login}</a>  
+    </span>
+    </h1>
+    </div>
+    </div>
+    <div class="slds-page-header__name-meta">
+      <div class="slds-grid">
+        <div class="slds-col slds-text-align_left">GITHUB ID : {user.id}</div>
+        <div class="slds-col slds-text-align_right">JOINED ON :{user.created_at}</div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</template>
+</div>
+<template if:true={reposExist}>
+ <template for:each={repos} for:item="repo">
+<div key={repo.id} class="slds-var-m-around_xx-small slds-box slds-theme_shade slds-theme_alert-texture">
+<div class="slds-col slds-size_1-of-4 slds-var-m-around_xx-small">
+<b>{repo.name}</b>
+</div>
+<div class="slds-col slds-size_2-of-4 slds-var-m-around_xx-small">
+ <span class="slds-badge slds-theme_success">FORKS : {repo.forks_count}</span>
+ <span class="slds-badge slds-theme_warning">WATCHERS : {repo.watchers_count}</span>
+ <span class="slds-badge slds-theme_error">STARS : {repo.stargazers_count}</span>
+</div>
+<div class="slds-col slds-size_1-of-4 slds-var-m-around_xx-small">
+<a href={repo.html_url} target="_blank" class="slds-button slds-button_brand">VIEW REPO</a>
+</div>
+</div>
+</template>
+</template>
+</lightning-card>
+</template>
